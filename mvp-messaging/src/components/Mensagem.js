@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 const ContainerMensagem = styled.div `
 display: flex;
+background-color: lightblue;
+height: 30px;
 `
 const NomeAutor = styled.p `
 font-weight: bold;
 margin-right: 50px;
-width: 550px;
 `
 
 export class Mensagem extends React.Component{

@@ -1,5 +1,4 @@
 import React from 'react';
-import Display from './components/Display'
 import styled from 'styled-components'
 import Mensagem from './components/Mensagem'
 
@@ -12,12 +11,36 @@ width: 600px;
 margin-left: 400px;
 height: 99vh;
 `
+const ContainerDasMensagens = styled.div `
+width: 100%;
+border: red 2px solid;
 
+`
 const ContainerDosInputs = styled.div ` 
 margin-bottom: 0px;
 `
+const Display = styled.div` 
+height: 94vh;
+display: flex;
+flex-direction: column-reverse;
+width: 100%;
 
-const dadosDaMensagem = []
+`
+const MensagemFantasma = [
+  {
+    autor: "",
+    mensagem: "",
+  }
+]
+const dadosDaMensagem = MensagemFantasma.map(mensagem => {
+  return (
+    <Mensagem
+    autor={mensagem.autor}
+    mensagem = {mensagem.mensagem }
+    />
+  )
+  }
+)
 class App extends React.Component {
   state = {
     valorNome: "",
@@ -33,7 +56,7 @@ onChangeValorMensagem = (event) => {
 
 }
 
-enviarMensagem = () => {
+EnviarMensagem = () => {
   dadosDaMensagem.push(
   <Mensagem
     autor = {this.state.valorNome}
@@ -43,25 +66,29 @@ enviarMensagem = () => {
 }
 
   render () {
-
+    const mensagensNaTela = dadosDaMensagem.map(item => {
+      return item;
+    }
+      )
     return (
     <FullBody>
-      <Mensagem
-      />
+      <Display>
+      <ContainerDasMensagens>
+        {mensagensNaTela}
+      </ContainerDasMensagens>
+      </Display>
         <ContainerDosInputs>
             <input
                 placeholder={"Digite seu nome"}
                 onChange={this.onChangeValorNome}
                 value={this.state.valorNome}
             />
-
             <input
                 placeholder={"Digite sua mensagem"}
                 onChange={this.onChangeValorMensagem}
                 value={this.state.valorMensagem}
             />
-
-            <button onClick={this.enviarMensagem}>Enviar</button>
+            <button onClick={this.EnviarMensagem}>Enviar</button>
         </ContainerDosInputs> 
         </FullBody>
     )
