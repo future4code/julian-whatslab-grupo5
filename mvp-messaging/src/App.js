@@ -2,30 +2,60 @@ import React from 'react';
 import styled from 'styled-components'
 import Mensagem from './components/Mensagem'
 
+
+//Código de estilo
+
 const FullBody = styled.div `
 display: flex;
 flex-direction: column;
-align-items: center;
-border: black 2px solid;
+border: #6C5B7B 2px solid;
 width: 600px;
-margin-left: 400px;
+margin: auto;
 height: 99vh;
+justify-content: flex-end;
+gap: 5px;
+background-color: #355C7D;
 `
 const ContainerDasMensagens = styled.div `
 width: 100%;
-border: red 2px solid;
-
 `
 const ContainerDosInputs = styled.div ` 
 margin-bottom: 0px;
+margin-top: 10px;
 `
 const Display = styled.div` 
 height: 94vh;
 display: flex;
 flex-direction: column-reverse;
 width: 100%;
+margin-bottom: 10px;
+`
+
+const InputDoAutor = styled.input`
+border: 2px solid grey;
+width: 100px;
+height: 20px;
 
 `
+
+const InputDaMensagem = styled.input` 
+border: 2px solid grey;
+width: 400px;
+height: 20px;
+margin-left: 10px;
+`
+
+const BotaoEnviar = styled.button`
+background-color: #C06C84;
+border: none;
+padding: 7px;
+margin-left: 30px;
+color: white;
+border-radius: 10px;
+`
+
+//Elementos de Funcionalidade
+
 const MensagemFantasma = [
   {
     autor: "",
@@ -62,7 +92,8 @@ EnviarMensagem = () => {
     autor = {this.state.valorNome}
     mensagem = {this.state.valorMensagem}
       />)
-      console.log(dadosDaMensagem)
+
+      this.setState({valorMensagem: ""})
 }
 
   render () {
@@ -78,17 +109,17 @@ EnviarMensagem = () => {
       </ContainerDasMensagens>
       </Display>
         <ContainerDosInputs>
-            <input
+            <InputDoAutor
                 placeholder={"Digite seu nome"}
                 onChange={this.onChangeValorNome}
                 value={this.state.valorNome}
             />
-            <input
+            <InputDaMensagem
                 placeholder={"Digite sua mensagem"}
                 onChange={this.onChangeValorMensagem}
                 value={this.state.valorMensagem}
             />
-            <button onClick={this.EnviarMensagem}>Enviar</button>
+            <BotaoEnviar onClick={this.EnviarMensagem}>Enviar</BotaoEnviar>
         </ContainerDosInputs> 
         </FullBody>
     )
